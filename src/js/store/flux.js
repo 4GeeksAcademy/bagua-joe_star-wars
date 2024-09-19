@@ -1,6 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const API_URL ="https://swapi.dev/api";
 	return {
 		store: {
+			characters: [], 
+			planets: [], 
+			vehicles: [],
+			favorites: [],
+			
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +21,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			getPeople: () => {
+				fetch(`${API_URL}/people`)
+					.then((res) => res.json())
+					.then((data) => {
+						console.log("response jsonified:", data)
+						setStore(
+							{ characters: data.results }
+						)
+					})
+					.catch((error) => {
+						console.error("Error fetching people:", error);
+						
+					});
+				
+
+			},
+			getPlanets: () => {
+				fetch(`${API_URL}/planets`)
+					.then((res) => res.json())
+					.then((data) => {
+						console.log("response jsonified:", data)
+						setStore(
+							{ planets: data.results }
+						)
+					})
+					.catch((error) => {
+						console.error("Error fetching planets:", error);
+						
+					});
+			},
+			getVehicles: () => {
+				fetch(`${API_URL}/vehicles`)
+					.then((res) => res.json())
+					.then((data) => {
+						console.log("response jsonified:", data)
+						setStore(
+							{ vehicles: data.results }
+						)
+					})
+					.catch((error) => {
+						console.error("Error fetching vehicles:", error);
+						
+					});
+			},
+
+			addFavorite: (favItem) => {
+				setStore({ favorites: [...getStore().favorites, favItem ]})
+			},
+
+			deleteFavorite: (index) => {
+				const store = getStore();
+				const newFavorites =store.favorites.filter((_, i) => i !== index);
+				setStore({favorites: newFavorites})
+			},
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
