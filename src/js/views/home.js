@@ -10,8 +10,8 @@ export const Home = () => {
 	return (
 		<div className="container">
 			<div className="d-flex flex-column w-100 mt-3 align-items-center">
-				<h1>characters</h1>
-				<div className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+				<h1>Characters</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
 					{store.characters.map((item, index) => {
 						return (
 							<Card item={item} index={index} key={index}category="characters" />
@@ -19,7 +19,27 @@ export const Home = () => {
 					})}
 				</div>
 			</div>
-			{/* TODO COPY THIS DIV 2 TIMES BELOW FOR PLANETS AND VEHICLES */}
+			<div className="d-flex flex-column w-100 mt-3 align-items-center">
+				<h1>Planets</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+					{store.planets.map((item, index) => {
+						return (
+							<Card item={item} index={index} key={index}category="planets" />
+						)
+					})}
+				</div>
+			</div>
+			<div className="d-flex flex-column w-100 mt-3 align-items-center">
+				<h1>Vehicles</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+					{store.vehicles.map((item, index) => {
+						return (
+							<Card item={item} index={index} key={index}category="vehicles" />
+						)
+					})}
+				</div>
+			</div>
+			
 		</div>
 	);
 }
