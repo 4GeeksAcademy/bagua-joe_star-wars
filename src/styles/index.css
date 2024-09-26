@@ -1,3 +1,7 @@
 /* 
     General Styles
 */
+.fa-trash:hover {
+    color:red;
+    cursor: pointer;
+}
